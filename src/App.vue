@@ -7,6 +7,7 @@
       <phone-body  
         :posts="posts"
         :filters="filters"/>
+        
       <div class="phone-footer">
        <div class="home-cta">
         <i class="fas fa-home fa-lg"></i>

@@ -1,6 +1,5 @@
 <template>
     <div class="instavue-post">
-        Hello
         <div class="header level">
             <div class="header-left">
                 <figure class="image is-32x32">
@@ -11,16 +10,19 @@
         </div>
         <div class="image-container"
              :class="post.filter"
-             :style="{backgroundImage: 'url(' + post.postImage + ')'}">
+             :style="{backgroundImage: 'url(' + post.postImage + ')'}"
+             @dblclick="like">
              
     </div>
 
         <div class="content">
             <div class="heart">
-                <i class="far fa-heart fa-lg"></i>
+                <i class="far fa-heart fa-lg"
+                :class="{'fas':this.post.hasbeenliked}"
+                @click="like"></i>
             </div>
-            <p class="likes">{{posts.likes}}likes</p>
-            <p class="caption"><span>{{post.username}}</span>{{span.caption}}</p>
+            <p class="likes">{{post.likes}}likes</p>
+            <p class="caption"><span>{{post.username}}</span>{{post.caption}}</p>
        </div>
     </div>
 </template>
@@ -31,6 +33,14 @@ export default{
     props:
     {
         post:Object
+    },
+    methods:{
+        like(){
+            this.post.hasbeenliked
+              ?this.post.likes--
+              :this.post.likes++;
+        this.post.hasbeenliked = !this.post.hasbeenliked;
+        }
     }
 };
 </script>
