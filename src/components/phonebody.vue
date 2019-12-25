@@ -6,22 +6,54 @@
           :key="posts.indexOf(post)">
           </instavue-post>
      </div>
+     <div v-if="step===2">
+         <div class="selected-image"
+              :class="selectedFilter"
+             :style="{backgroundImage:'url(' + image +')'}"></div>
+         <div class="filter-container">
+             <filter-type v-for="filter in filters"
+             :filter="filter"
+             :image="image"
+             :key="filters.indexOf(filter)">
+             </filter-type>
+         </div>
+     </div>
+     <div v-if="step===3">
+        <div class="selected-image"
+             :class="selectedFilter"
+             :style="{backgroundImage : 'url(' + image + ')' }">
   </div>
+       <div class="caption-container">
+          <textarea class="caption-input"
+          placeholder="Write a caption..."
+          type="text"
+          :value="value"
+          @input="$emit('input', $event.target.value)">
+        </textarea>
+       </div>
+     </div>
+     </div>
 </template>
 
 <script>
 import instavuepost from "./instavuepost";
+import FilterType from "./FilterType";
+// import FilterTypeVue from './FilterType.vue';
 
 export default {
     name :"phonebody",
     props:{
         step:Number,
         posts:Array,
-        filters:Array
+        filters:Array,
+        image:String,
+        selectedFilter:String,
+        value:String
     },
     components:{
-        "instavue-post":instavuepost
-    }
+        "instavue-post":instavuepost,
+        "filter-type" :FilterType
+    } 
 };
 </script>
 
