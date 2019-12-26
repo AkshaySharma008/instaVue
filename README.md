@@ -1,4 +1,6 @@
 # instavue
+<p>Its is a simple single page application made with Vue js,HTML,SCSS and JavaScript</p>
+
 
 ## Project setup
 ```
